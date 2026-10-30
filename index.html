@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gene Fusion Lab · BIS 101</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#18212c;background:#f4f6f7;--blue:#3d58a7;--green:#318450;--violet:#7a4ca5;--line:#d9e1e7;--ink:#18212c}
+*{box-sizing:border-box}body{margin:0}main{max-width:1120px;margin:auto;padding:32px 22px 70px}h1{font-size:clamp(2rem,4vw,3.25rem);letter-spacing:-.04em;margin:.15em 0}h2{font-size:1.25rem;margin:0}h3{font-size:1rem;margin:0 0 9px}p{line-height:1.55}.eyebrow{font-size:.77rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin:0}.lede{max-width:750px;font-size:1.05rem;color:#526071;margin:12px 0 0}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 6px 22px #19355409;padding:24px;margin-top:18px}.section-head{display:flex;align-items:center;gap:12px;margin-bottom:13px}.step{display:inline-grid;place-items:center;background:#e9eefb;color:var(--blue);width:31px;height:31px;border-radius:50%;font-weight:800}.note{font-size:.88rem;color:#5d6a78;margin:8px 0}.goal{display:flex;gap:12px;align-items:flex-start;background:#eef3fa;border-radius:10px;padding:12px 15px;margin-top:20px;color:#31445f}.goal strong{white-space:nowrap}.orientation{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 20px}.orientation button,.actions button,.nudge button,.linker-box button{font:inherit;cursor:pointer;border-radius:9px;border:1px solid #b9c6d4;background:#fff;color:var(--ink);font-weight:700;padding:9px 14px}.orientation button[aria-pressed=true]{background:#263e79;color:#fff;border-color:#263e79}.orientation button:focus-visible,.actions button:focus-visible,.nudge button:focus-visible,.linker-box button:focus-visible,input:focus-visible{outline:3px solid #f0a33a;outline-offset:2px}.gene-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.gene{border:1px solid var(--line);border-radius:12px;padding:17px;min-width:0}.gene.gfp{border-top:5px solid var(--blue)}.gene.partner{border-top:5px solid var(--green)}.gene-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}.gene-title{font-size:1.05rem;font-weight:800}.gene-sub{color:#627182;font-size:.82rem}.protein-map{display:flex;flex-wrap:wrap;gap:3px;margin:12px 0}.aa{font:700 .72rem ui-monospace,SFMono-Regular,Consolas,monospace;display:grid;place-items:center;width:24px;height:26px;border-radius:4px;background:#e8ebee;color:#596774}.gfp .aa.core{background:#dbe3fb;color:#273c8c}.partner .aa.core{background:#d9eee1;color:#17683b}.aa.motif{background:#fce9b8!important;color:#5b4200!important;box-shadow:inset 0 0 0 2px #dfa728}.sequence{font:600 .86rem/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.035em;overflow-wrap:anywhere;background:#f7f9fb;padding:10px;border-radius:8px;min-height:70px}.base.keep{color:#172d54;background:#e1e9f8}.partner .base.keep{color:#175633;background:#def0e5}.base.drop{color:#9ca6af}.base.flank{background:#edf0f2;color:#74818e}.base.flank.keep{background:#ffe5c6;color:#8a4800;box-shadow:inset 0 -2px #e9a34d}.base.motif.keep{background:#fce9b8;color:#624900;box-shadow:inset 0 -2px #dfa728}.orf-edge{color:#647788;font-weight:900;padding:0 2px}.sequence-caption{font-size:.78rem;color:#5d6a78;margin:7px 0 4px}.bar{color:#df7c19;font-weight:900;font-size:1.15em}.range-label{font-weight:750;display:block;margin-top:17px}.slider-row{display:flex;align-items:center;gap:8px;margin-top:7px}.slider-row input[type=range]{flex:1;min-width:45px;accent-color:#354d91}.nudge{display:flex;gap:3px}.nudge button{padding:4px 9px}.coordinate{font:700 .87rem ui-monospace,Consolas,monospace;color:#415066;margin:7px 0 0}.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.tag{font-size:.8rem;padding:4px 8px;border-radius:6px;background:#e8ebee;color:#4e5b6a}.tag.motif{background:#fce9b8;color:#624900}.tag.spacer{background:#edf0f2}.junction{border-radius:11px;background:#f5f7fa;padding:16px;margin-top:16px}.junction-title{font-weight:800;margin:0 0 7px}.junction-seq{font:700 1rem/1.7 ui-monospace,Consolas,monospace;overflow-wrap:anywhere;margin:0}.junction-seq .gfp-fragment{color:var(--blue)}.junction-seq .partner-fragment{color:var(--green)}.junction-seq .linker-fragment{color:var(--violet);background:#eee5f7}.junction-seq .break{color:#d2700f;padding:0 3px}.actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:18px}.actions .primary{background:#273d75;border-color:#273d75;color:white}.actions .secondary{background:#fff}.feedback{margin-top:17px;border-radius:11px;padding:17px;border:1px solid #d7dee5}.feedback[hidden]{display:none}.feedback.good{background:#eff8f1;border-color:#a9d8b6}.feedback.bad{background:#fff4ed;border-color:#efc3a9}.feedback h3{margin:0 0 6px}.feedback ul{margin:8px 0;padding-left:22px;line-height:1.5}.feedback .protein{font:700 .95rem/1.85 ui-monospace,Consolas,monospace;overflow-wrap:anywhere;background:#fff;padding:10px;border-radius:7px}.feedback .protein .gfp-aa{color:var(--blue)}.feedback .protein .partner-aa{color:var(--green)}.feedback .protein .linker-aa{color:var(--violet);background:#eee5f7}.feedback .protein .junction-aa{color:#aa5f00;background:#fff0d8}.feedback .protein .stop{color:#ba423a;text-decoration:underline}.feedback .small{font-size:.86rem;color:#526071}.outcome{font-size:1.05rem;font-weight:850}.linker-box{border:1px solid #d8cbe6;border-left:5px solid var(--violet);border-radius:11px;padding:16px;margin-top:20px;background:#fbf9fd}.linker-box h3{margin:0 0 8px}.linker-box input[type=checkbox]{accent-color:var(--violet);width:17px;height:17px;vertical-align:middle}.linker-controls{margin-top:13px}.linker-controls[hidden],.source-fields[hidden]{display:none}.linker-box label{font-weight:700}.linker-box select,.linker-box input[type=text]{font:inherit;border:1px solid #b9c6d4;border-radius:7px;padding:8px;background:white}.linker-box input[type=text]{width:min(100%,360px);font-family:ui-monospace,Consolas,monospace;letter-spacing:.05em}.linker-source-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.linker-source-row select{min-width:180px}.linker-sequence,.linker-stop-track{display:flex;flex-wrap:wrap;gap:2px;margin-top:10px}.linker-stop-track{margin-top:2px}.linker-base,.linker-stop-cell{font:700 .96rem ui-monospace,Consolas,monospace;width:23px;text-align:center;display:inline-grid;place-items:center}.linker-base{height:27px;border-radius:4px;background:#eaecef;color:#8b95a1}.linker-base.selected{background:#e9ddf4;color:#5c3582}.linker-stop-cell{height:17px;color:transparent}.linker-stop-cell.marked{color:#bb2d29;font-size:.74rem}.linker-stop-note{font-size:.84rem;color:#5d6a78;margin:6px 0 0}.linker-stop-note.has-stop{color:#a52a27;font-weight:700}.linker-box input[type=range]{accent-color:var(--violet)}.linker-range{display:grid;grid-template-columns:1fr 1fr;gap:16px}.linker-range input{width:100%}.linker-error{color:#a9322a;font-weight:700;font-size:.87rem;margin:7px 0}.linker-error:empty{display:none}.bottom-note{font-size:.82rem;color:#627182;margin-top:19px}.instruction-list{margin:9px 0 0;padding-left:24px;line-height:1.55}.instruction-list li{margin:4px 0}@media(max-width:750px){.linker-range{grid-template-columns:1fr}main{padding:22px 12px 44px}.panel{padding:17px}.gene-grid{grid-template-columns:1fr}.goal{display:block}.goal strong{display:block;margin-bottom:3px}}
+</style>
+</head>
+<body>
+<main>
+<header><p class="eyebrow">BIS 101 · interactive genetics</p><h1>Gene Fusion Lab</h1><p class="lede">Join two short coding sequences to make one protein. Choose the exact DNA junction, then see whether translation passes through it in the intended reading frame.</p></header>
+<div class="goal"><strong>Your goal</strong><span>Keep the <strong>SYG</strong> motif of toy-GFP and the <strong>HGG</strong> motif of Partner. Remove the first gene’s stop codon, keep one start codon at the beginning and one stop at the end, and preserve both coding frames.</span></div>
+<section class="panel" aria-labelledby="design-title"><div class="section-head"><span class="step">1</span><h2 id="design-title">Choose the protein order</h2></div><p class="note">N terminus is the beginning of the protein; C terminus is the end. Toy-GFP is a model sequence for this exercise and is not a functional fluorescent protein.</p><div class="orientation" role="group" aria-label="Fusion orientation"><button type="button" id="c-choice" aria-pressed="true">Toy-GFP → Partner <span aria-hidden="true">(C-terminal tag)</span></button><button type="button" id="n-choice" aria-pressed="false">Partner → Toy-GFP <span aria-hidden="true">(N-terminal tag)</span></button></div><p class="note" id="order-explanation"></p></section>
+<section class="panel" aria-labelledby="cut-title"><div class="section-head"><span class="step">2</span><h2 id="cut-title">Choose both sides of the DNA junction</h2></div><p class="note">Move each control one base at a time. Colored bases remain in the fusion; gray bases are removed. The orange bar marks the join; square brackets mark the coding region. Displayed base positions are numbered from 1, including the flanks. Gray flank DNA lies outside each model ORF; including a flank at the join will fail the fusion check.</p><div class="gene-grid"><article class="gene" id="first-card"><div class="gene-top"><span class="gene-title" id="first-name"></span><span class="gene-sub">first gene · keep its left side</span></div><div class="protein-map" id="first-protein" aria-label="First gene protein map"></div><p class="note" id="first-motif-note"></p><p class="sequence-caption">5′ flank (6 bases) · [coding sequence, ATG to stop] · 3′ flank (6 bases)</p><div class="sequence" id="first-sequence" aria-label="First gene DNA"></div><label class="range-label" for="first-cut">Last base to keep from first gene</label><div class="slider-row"><div class="nudge"><button type="button" data-target="first-cut" data-delta="-1" aria-label="Move first cut left one base">−</button></div><input type="range" id="first-cut" min="1" step="1"><div class="nudge"><button type="button" data-target="first-cut" data-delta="1" aria-label="Move first cut right one base">+</button></div></div><p class="coordinate" id="first-coordinate"></p></article><article class="gene" id="second-card"><div class="gene-top"><span class="gene-title" id="second-name"></span><span class="gene-sub">second gene · keep its right side</span></div><div class="protein-map" id="second-protein" aria-label="Second gene protein map"></div><p class="note" id="second-motif-note"></p><p class="sequence-caption">5′ flank (6 bases) · [coding sequence, ATG to stop] · 3′ flank (6 bases)</p><div class="sequence" id="second-sequence" aria-label="Second gene DNA"></div><label class="range-label" for="second-cut">First base to keep from second gene</label><div class="slider-row"><div class="nudge"><button type="button" data-target="second-cut" data-delta="-1" aria-label="Move second cut left one base">−</button></div><input type="range" id="second-cut" min="1" step="1"><div class="nudge"><button type="button" data-target="second-cut" data-delta="1" aria-label="Move second cut right one base">+</button></div></div><p class="coordinate" id="second-coordinate"></p></article></div><div class="legend"><span class="tag motif">gold = motif to preserve</span><span class="tag">color = remaining coding region</span><span class="tag spacer">gray = removed DNA or flexible end</span></div><div class="linker-box" aria-labelledby="linker-title"><h3 id="linker-title">Optional linker</h3><label><input type="checkbox" id="use-linker"> Add a linker between the two genes</label><p class="note">A linker can provide spacing between protein parts. The sequence may be up to 15 bases long. The two sliders select exactly which bases to retain. Its codons are determined only after joining it to the first gene.</p><div id="linker-controls" class="linker-controls" hidden><div class="linker-source-row"><label for="linker-source">Linker DNA</label><select id="linker-source"><option value="random">Generate randomly</option><option value="custom">Write my own</option></select></div><div id="random-fields" class="source-fields"><label for="random-count">Generate <output id="random-count-value">15</output> bases</label><input type="range" id="random-count" min="3" max="15" value="15" step="3"><button type="button" id="regenerate" class="secondary">Generate another</button><p class="note">Random bases are drawn from A, C, G, and T. The resulting fusion may contain an in-frame stop.</p></div><div id="custom-fields" class="source-fields" hidden><label for="custom-linker">Enter DNA, 5′ → 3′ (up to 15 bases)</label><p><input type="text" id="custom-linker" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Example: GGT TCT GGT" aria-describedby="custom-help"></p><p id="custom-help" class="note">Use A, C, G, or T; spaces are ignored. The sequence may be any length from 1 to 15 bases.</p></div><p id="linker-error" class="linker-error" role="alert"></p><div id="linker-sequence" class="linker-sequence" aria-label="Linker DNA sequence"></div><div id="linker-stop-track" class="linker-stop-track" aria-label="In-frame stop positions below linker DNA"></div><p id="linker-stop-note" class="linker-stop-note" aria-live="polite"></p><div class="linker-range"><div><label for="linker-start">First linker base to keep: <output id="linker-start-value">1</output></label><input type="range" id="linker-start" min="1" max="15" value="1" step="1"></div><div><label for="linker-end">Last linker base to keep: <output id="linker-end-value">15</output></label><input type="range" id="linker-end" min="1" max="15" value="15" step="1"></div></div><p id="linker-selection" class="coordinate"></p></div></div><div class="junction"><p class="junction-title">DNA junction preview, 5′ → 3′</p><p class="junction-seq" id="junction-seq" aria-live="polite"></p><p class="note" id="junction-codon"></p></div><div class="actions"><button type="button" class="primary" id="check">Check fusion</button><button type="button" class="secondary" id="hint">Show a hint</button><button type="button" class="secondary" id="reset">Reset cuts</button></div><div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div></section>
+<section class="panel" aria-labelledby="learn-title"><div class="section-head"><span class="step">3</span><h2 id="learn-title">What makes a successful fusion?</h2></div><ol class="instruction-list"><li>The first gene supplies the start codon. Cut before its stop codon so translation can continue.</li><li>The second gene supplies the final stop codon. Its own start codon is usually removed from this internal position.</li><li>Check the reading frame across the entire join. A linker base can complete a partial junction codon, but the second protein must return to its original frame.</li><li>Keep the highlighted motifs intact. A continuous ORF alone does not guarantee that the desired protein parts remain.</li><li>If you add a linker, inspect the stop markers below its sequence and check the translated fusion.</li></ol><p class="bottom-note">This simplified exercise joins coding DNA directly. Real fusion design also requires checks of protein folding, localization, and function.</p></section>
+</main>
+<script>
+'use strict';
+const code={TTT:'F',TTC:'F',TTA:'L',TTG:'L',TCT:'S',TCC:'S',TCA:'S',TCG:'S',TAT:'Y',TAC:'Y',TAA:'*',TAG:'*',TGT:'C',TGC:'C',TGA:'*',TGG:'W',CTT:'L',CTC:'L',CTA:'L',CTG:'L',CCT:'P',CCC:'P',CCA:'P',CCG:'P',CAT:'H',CAC:'H',CAA:'Q',CAG:'Q',CGT:'R',CGC:'R',CGA:'R',CGG:'R',ATT:'I',ATC:'I',ATA:'I',ATG:'M',ACT:'T',ACC:'T',ACA:'T',ACG:'T',AAT:'N',AAC:'N',AAA:'K',AAG:'K',AGT:'S',AGC:'S',AGA:'R',AGG:'R',GTT:'V',GTC:'V',GTA:'V',GTG:'V',GCT:'A',GCC:'A',GCA:'A',GCG:'A',GAT:'D',GAC:'D',GAA:'E',GAG:'E',GGT:'G',GGC:'G',GGA:'G',GGG:'G'};
+const genes={gfp:{name:'Toy-GFP',upstream:'GATCGA',downstream:'CCGTAC',codons:'ATG GCT GAA CTG AAG GCT GGT TCT TAT GGT GAA GCT CCT GAA GGT AAG CTG GCT GAA GGT CCT GCT GAA GCT TAA'.split(' '),motif:'SYG',motifStart:7},partner:{name:'Partner',upstream:'TGCAAC',downstream:'GATACC',codons:'ATG CCT GAA GCT GGT GAA CCT CAT GGT GGT GCT AAG GAA CCT GCT GAA GGT GCT CCT GAA GCT GGT GAA TGA'.split(' '),motif:'HGG',motifStart:7}};
+for(const gene of Object.values(genes)){gene.dna=gene.codons.join('');gene.aa=gene.codons.map(c=>code[c]).join('');gene.full=gene.upstream+gene.dna+gene.downstream;gene.codingStart=gene.upstream.length;gene.codingEnd=gene.codingStart+gene.dna.length;}
+let order=['gfp','partner'];
+const $=id=>document.getElementById(id);
+const firstCut=$('first-cut'),secondCut=$('second-cut'),feedback=$('feedback');
+function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function proteinMap(gene){return [...gene.aa].map((aa,i)=>`<span class="aa ${i>=gene.motifStart&&i<gene.motifStart+gene.motif.length?'motif':i>=5&&i<=15?'core':''}" title="Amino acid ${i+1}${aa==='*'?' · stop':''}">${aa}</span>`).join('');}
+function sequenceHTML(gene,cut,side){
+  let out='';
+  for(let i=0;i<gene.full.length;i++){
+    if(i===gene.codingStart)out+='<span class="orf-edge" aria-label="coding sequence starts">[</span>';
+    if(i===gene.codingEnd)out+='<span class="orf-edge" aria-label="coding sequence ends">]</span>';
+    if(i===cut)out+='<span class="bar" aria-label="junction">|</span>';
+    const flank=i<gene.codingStart||i>=gene.codingEnd;
+    const keep=side==='first'?i>=gene.codingStart&&i<cut:i>=cut&&i<gene.codingEnd;
+    const motif=i>=gene.codingStart+gene.motifStart*3&&i<gene.codingStart+(gene.motifStart+gene.motif.length)*3;
+    out+=`<span class="base ${keep?'keep':'drop'} ${flank?'flank':''} ${motif?'motif':''}">${gene.full[i]}</span>`;
+    if(i%3===2)out+=' ';
+  }
+  if(cut===gene.full.length)out+='<span class="bar" aria-label="junction">|</span>';
+  return out;
+}
+function resetCuts(){firstCut.value=genes[order[0]].codingEnd;secondCut.value=genes[order[1]].codingStart+1;feedback.hidden=true;update();}
+function setOrder(which){order=which==='c'?['gfp','partner']:['partner','gfp'];$('c-choice').setAttribute('aria-pressed',String(which==='c'));$('n-choice').setAttribute('aria-pressed',String(which==='n'));$('order-explanation').textContent=which==='c'?'Toy-GFP is at the N terminus; Partner is attached at its C terminus.':'Partner is at the N terminus; toy-GFP is attached at its C terminus.';for(const [side,key] of [['first',order[0]],['second',order[1]]]){const gene=genes[key];$(side+'-card').className='gene '+key;$(side+'-name').textContent=gene.name;$(side+'-protein').innerHTML=proteinMap(gene);$(side+'-motif-note').textContent=`Gold: ${gene.motif} motif. Gray: modeled less-conserved ends; start and stop still matter.`;const slider=$(side+'-cut');slider.min=side==='first'?gene.codingStart+1:1;slider.max=side==='first'?gene.full.length:gene.codingEnd;}
+resetCuts();}
+function translate(dna){const result=[];for(let i=0;i+2<dna.length;i+=3)result.push(code[dna.slice(i,i+3)]||'?');return result.join('');}
+const dnaBases='ACGT';
+let generatedLinker='';
+function generateLinker(){generatedLinker=Array.from({length:Number($('random-count').value)},()=>dnaBases[Math.floor(Math.random()*4)]).join('');$('random-count-value').textContent=$('random-count').value;}
+function linkerState(){
+  if(!$('use-linker').checked)return {enabled:false,dna:'',selected:'',error:''};
+  const custom=$('linker-source').value==='custom';
+  const raw=custom?$('custom-linker').value.toUpperCase().replace(/\s/g,''):generatedLinker;
+  let error='';
+  if(!raw)error='Enter at least one linker base.';
+  else if(/[^ACGT]/.test(raw))error='Linker DNA may contain only A, C, G, and T.';
+  else if(raw.length>15)error='The linker can contain at most 15 bases.';
+  const count=error?0:raw.length;
+  const first=$('linker-start'),last=$('linker-end');
+  first.disabled=last.disabled=!!error;
+  if(!error){first.max=last.max=count;first.value=Math.min(Number(first.value),count);last.value=Math.min(Number(last.value),count);if(Number(first.value)>Number(last.value))last.value=first.value;}
+  const from=Number(first.value),to=Number(last.value);
+  const selected=error?'':raw.slice(from-1,to);
+  return {enabled:true,dna:raw,selected,error,count,from,to};
+}
+function stopsInLinker(state,firstPart,secondPart){
+  const prefixLength=firstPart.length,selectedStart=prefixLength,selectedEnd=prefixLength+state.selected.length;
+  const fusion=firstPart+state.selected+secondPart,marked=new Set(),entries=[];
+  for(let i=0;i+2<fusion.length;i+=3){
+    const triplet=fusion.slice(i,i+3);
+    if(code[triplet]!=='*'||i>=selectedEnd||i+3<=selectedStart)continue;
+    const overlapStart=Math.max(i,selectedStart),overlapEnd=Math.min(i+3,selectedEnd);
+    for(let j=overlapStart;j<overlapEnd;j++)marked.add(state.from-1+j-prefixLength);
+    const begins=state.from+overlapStart-prefixLength,ends=state.from+overlapEnd-1-prefixLength;
+    entries.push(`${triplet} overlaps selected linker base${begins===ends?'':'s'} ${begins}${begins===ends?'':`–${ends}`}${i<selectedStart||i+3>selectedEnd?' at a junction':''}`);
+  }
+  return {marked,entries};
+}
+function renderLinker(state,firstPart,secondPart){
+  $('linker-controls').hidden=!state.enabled;
+  $('random-fields').hidden=$('linker-source').value!=='random';
+  $('custom-fields').hidden=$('linker-source').value!=='custom';
+  $('linker-error').textContent=state.error;
+  if(!state.enabled||state.error){$('linker-sequence').innerHTML='';$('linker-stop-track').innerHTML='';$('linker-stop-note').textContent='';return;}
+  const stops=stopsInLinker(state,firstPart,secondPart);
+  $('linker-sequence').innerHTML=[...state.dna].map((base,i)=>`<span class="linker-base ${i+1>=state.from&&i+1<=state.to?'selected':''}" title="Linker base ${i+1}">${base}</span>`).join('');
+  $('linker-stop-track').innerHTML=[...state.dna].map((_,i)=>`<span class="linker-stop-cell ${stops.marked.has(i)?'marked':''}" aria-label="${stops.marked.has(i)?'in-frame stop':''}">${stops.marked.has(i)?'▲':'·'}</span>`).join('');
+  $('linker-stop-note').className='linker-stop-note'+(stops.entries.length?' has-stop':'');
+  $('linker-stop-note').textContent=stops.entries.length?`In-frame stop below selected linker: ${stops.entries.join('; ')}.`:'No in-frame stop overlaps the selected linker bases.';
+  $('linker-start-value').textContent=state.from;
+  $('linker-end-value').textContent=state.to;
+  $('linker-selection').textContent=`Include linker base${state.from===state.to?'':'s'} ${state.from}${state.from===state.to?'':`–${state.to}`} (${state.selected.length} bases).`;
+}
+function update(){
+  const a=genes[order[0]],b=genes[order[1]],displayCutA=Number(firstCut.value),displayStartB=Number(secondCut.value)-1,cutA=displayCutA-a.codingStart,startB=displayStartB-b.codingStart;
+  const linker=linkerState();
+  $('first-sequence').innerHTML=sequenceHTML(a,displayCutA,'first');
+  $('second-sequence').innerHTML=sequenceHTML(b,displayStartB,'second');
+  $('first-coordinate').textContent=`Keep coding bases 1–${Math.min(cutA,a.dna.length)}; cut after displayed base ${displayCutA}${cutA>a.dna.length?' (in 3′ flank)':''}`;
+  $('second-coordinate').textContent=`Start at displayed base ${displayStartB+1}${startB<0?' (in 5′ flank)':''}; keep through coding stop`;
+  const firstPart=a.full.slice(a.codingStart,displayCutA),secondPart=b.full.slice(displayStartB,b.codingEnd);
+  renderLinker(linker,firstPart,secondPart);
+  const left=firstPart.slice(-15),right=secondPart.slice(0,15);
+  const linkerFragment=linker.selected?`<span class="linker-fragment">${linker.selected}</span><span class="break">|</span>`:'';
+  $('junction-seq').innerHTML=`<span class="${order[0]}-fragment">${left}</span><span class="break">|</span>${linkerFragment}<span class="${order[1]}-fragment">${right}</span>`;
+  $('junction-codon').textContent=linker.error?`Fix the linker DNA to complete this fusion. The gene pieces contribute ${firstPart.length+secondPart.length} bases.`:`Fusion length: ${cutA+linker.selected.length+b.dna.length-startB} bases${linker.selected?` (${linker.selected.length} from the linker)`:''}. The bar shows each DNA join; groups of three bases form codons.`;
+  feedback.hidden=true;
+}
+function showFeedback(){
+  const a=genes[order[0]],b=genes[order[1]],displayCutA=Number(firstCut.value),displayStartB=Number(secondCut.value)-1,cutA=displayCutA-a.codingStart,startB=displayStartB-b.codingStart,linker=linkerState();
+  if(linker.error){feedback.hidden=false;feedback.className='feedback bad';feedback.innerHTML=`<h3>Fix the linker DNA</h3><p>${escapeHTML(linker.error)}</p>`;return;}
+  const firstPart=a.full.slice(a.codingStart,displayCutA),secondPart=b.full.slice(displayStartB,b.codingEnd);
+  const dna=firstPart+linker.selected+secondPart,aa=translate(dna),issues=[];
+  const aMotifEnd=(a.motifStart+a.motif.length)*3,bMotifStart=b.motifStart*3;
+  if(cutA>a.dna.length)issues.push(`${a.name}'s 3′ noncoding flank is included. Cut before the flank begins.`);
+  if(startB<0)issues.push(`${b.name}'s 5′ noncoding flank is included. Start within its coding sequence.`);
+  if(cutA<aMotifEnd)issues.push(`${a.name}'s ${a.motif} motif was cut or removed.`);
+  if(startB>bMotifStart)issues.push(`${b.name}'s ${b.motif} motif was cut or removed.`);
+  const phase=((firstPart.length+linker.selected.length-startB)%3+3)%3;
+  if(phase!==0)issues.push(`The second protein is out of frame by ${phase} base${phase===1?'':'s'}. Adjust the gene cuts or linker selection.`);
+  if(dna.slice(0,3)!=='ATG')issues.push('The fusion does not begin with the first gene’s ATG start codon.');
+  if(dna.length%3!==0)issues.push(`The fused DNA has ${dna.length} bases, which is not divisible by three.`);
+  const firstStop=aa.indexOf('*');
+  if(firstStop>=0&&firstStop<aa.length-1)issues.push(`Translation stops early at fusion codon ${firstStop+1}. Check the first gene’s stop codon and the linker.`);
+  if(!aa.endsWith('*'))issues.push('There is no in-frame stop codon at the end of the fusion.');
+  if(cutA>=aMotifEnd&&aa.slice(a.motifStart,a.motifStart+a.motif.length)!==a.motif)issues.push(`${a.name}'s motif is not preserved in the translated fusion.`);
+  if(startB<=bMotifStart&&phase===0){
+    const secondMotifIndex=(firstPart.length+linker.selected.length+bMotifStart-startB)/3;
+    if(aa.slice(secondMotifIndex,secondMotifIndex+b.motif.length)!==b.motif)issues.push(`${b.name}'s motif is not preserved in the translated fusion.`);
+  }
+  const success=issues.length===0;feedback.hidden=false;feedback.className='feedback '+(success?'good':'bad');
+  const title=success?'In-frame fusion: both motifs preserved':'This junction needs revision';
+  let protein='';
+  const visibleAa=firstStop<0?aa:aa.slice(0,firstStop+1);
+  for(let i=0;i<visibleAa.length;i++){
+    const codonStart=i*3,codonEnd=codonStart+3;
+    let cls=codonEnd<=firstPart.length?`${order[0]}-aa`:codonStart>=firstPart.length+linker.selected.length?`${order[1]}-aa`:codonStart>=firstPart.length&&codonEnd<=firstPart.length+linker.selected.length?'linker-aa':'junction-aa';
+    if(visibleAa[i]==='*')cls='stop';
+    protein+=`<span class="${cls}">${escapeHTML(visibleAa[i])}</span>`;
+  }
+  const translatedLength=firstStop<0?aa.length:firstStop;
+  feedback.innerHTML=`<h3 class="outcome">${success?'✓':'×'} ${title}</h3>${issues.length?`<ul>${issues.map(s=>`<li>${escapeHTML(s)}</li>`).join('')}</ul>`:`<p>The first gene’s start and the second gene’s stop bracket one continuous reading frame. Both original motifs remain${linker.selected?' with the selected linker bases between them':''}.</p>`}<p class="small">Translated product (${translatedLength} amino acids before the first stop):</p><p class="protein" aria-label="Translated protein">${protein||'No complete codon'}</p><p class="small">* marks a stop codon. Blue and green amino acids come from the genes; purple amino acids come entirely from the selected linker; mixed junction codons are orange.</p>`;
+}
+$('c-choice').addEventListener('click',()=>setOrder('c'));$('n-choice').addEventListener('click',()=>setOrder('n'));firstCut.addEventListener('input',update);secondCut.addEventListener('input',update);document.querySelectorAll('[data-target]').forEach(button=>button.addEventListener('click',()=>{const input=$(button.dataset.target);input.value=Math.max(Number(input.min),Math.min(Number(input.max),Number(input.value)+Number(button.dataset.delta)));update();input.focus();}));$('use-linker').addEventListener('change',update);$('linker-source').addEventListener('change',update);$('custom-linker').addEventListener('input',update);$('random-count').addEventListener('input',()=>{generateLinker();update();});$('regenerate').addEventListener('click',()=>{generateLinker();update();});$('linker-start').addEventListener('input',()=>{if(Number($('linker-start').value)>Number($('linker-end').value))$('linker-end').value=$('linker-start').value;update();});$('linker-end').addEventListener('input',()=>{if(Number($('linker-end').value)<Number($('linker-start').value))$('linker-start').value=$('linker-end').value;update();});$('check').addEventListener('click',showFeedback);$('reset').addEventListener('click',resetCuts);$('hint').addEventListener('click',()=>{feedback.hidden=false;feedback.className='feedback';feedback.innerHTML='<h3>Hint</h3><p>Start by cutting just before the first gene’s stop and just after the second gene’s ATG. Then move one cut by a base and see whether a linker base restores the second gene’s frame. Keep both gold motifs.</p>';});generateLinker();setOrder('c');
+</script>
+</body>
+</html>
